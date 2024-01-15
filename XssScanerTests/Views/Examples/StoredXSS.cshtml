@@ -1,0 +1,8 @@
+﻿<h2>Stored XSS example</h2>
+<form id="form" method="post">
+    <input name="input" />
+    <input type="submit" value="Add review" />
+</form>
+<div id="reviews"></div>
+
+<script>document.getElementById("reviews").innerHTML = "<p>@Html.Raw(ViewBag.Reviews)</p>";</script>

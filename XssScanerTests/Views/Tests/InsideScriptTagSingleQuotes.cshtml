@@ -1,0 +1,10 @@
+﻿<h2>XSS Inside Script Tag Single Quotes Test</h2>
+<form method="post">
+    <input name="input" />
+    <input type="submit" value="Search" />
+</form>
+
+@if (@ViewBag.Input != null)
+{
+    <script>console.log('@Html.Raw(@ViewBag.Input)');</script>
+}

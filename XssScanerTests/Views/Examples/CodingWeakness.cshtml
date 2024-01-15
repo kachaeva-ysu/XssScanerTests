@@ -1,0 +1,11 @@
+﻿<h2>Coding weakness example</h2>
+<form id="form" method="post">
+    <input name="input" />
+    <input type="submit" value="Submit" />
+</form>
+<a>Link</a>
+
+@if (@ViewBag.Input != null)
+{
+    <script>document.querySelector('a').href = '@ViewBag.Input'</script>
+} 

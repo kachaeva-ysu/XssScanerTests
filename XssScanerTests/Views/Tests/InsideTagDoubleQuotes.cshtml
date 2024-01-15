@@ -1,0 +1,10 @@
+﻿<h2>XSS Inside Tag Double Quotes Test</h2>
+<form method="post">
+    <input name="input" />
+    <input type="submit" value="Search" />
+</form>
+
+@if (ViewBag.Input != null)
+{
+    <img alt="@Html.Raw("Input is " + @ViewBag.Input)" />
+}

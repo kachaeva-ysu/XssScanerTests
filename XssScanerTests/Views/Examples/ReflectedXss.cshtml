@@ -1,0 +1,6 @@
+﻿<h2>Reflected XSS example</h2>
+
+@if (ViewBag.UrlParameter != null)
+{
+    @Html.Raw("Nothing found for request \"" + @ViewBag.UrlParameter + "\"")
+}

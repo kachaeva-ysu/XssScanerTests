@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XssScanerTests", "XssScanerTests\XssScanerTests.csproj", "{D5522A74-2D9D-4325-93B6-4292C565A10B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5522A74-2D9D-4325-93B6-4292C565A10B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5522A74-2D9D-4325-93B6-4292C565A10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5522A74-2D9D-4325-93B6-4292C565A10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5522A74-2D9D-4325-93B6-4292C565A10B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F4A6DE81-71D0-4610-A05F-1E3802C30712}
+	EndGlobalSection
+EndGlobal
