@@ -3,6 +3,8 @@
     <input name="input" />
     <input type="submit" value="Add review" />
 </form>
-<div id="reviews"></div>
 
-<script>document.getElementById("reviews").innerHTML = "<p>@Html.Raw(ViewBag.Reviews)</p>";</script>
+@if (ViewBag.Reviews != null)
+{
+    <p>@Html.Raw(ViewBag.Reviews)</p>
+}

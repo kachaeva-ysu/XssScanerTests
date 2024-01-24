@@ -1,0 +1,39 @@
+﻿<h2>Discussion Board</h2>
+
+<script>document.write('Welcome to ' + decodeURI(document.location))</script>
+<p></p>
+
+@if(ViewBag.Email == null && ViewBag.Name == null)
+{
+    <form id="form" method="post">
+        <label for="name">Name: </label>
+        <input name="name" />
+        <p></p>
+        <label for="email">Email: </label>
+        <input name="email" />
+        <p></p>
+        <input type="submit" value="Register" />
+    </form>
+    <p></p>
+}
+
+@if (ViewBag.Name != null)
+{
+    <script>alert("Hello @Html.Raw(ViewBag.Name)");</script>
+}
+
+@if (ViewBag.Email != null)
+{
+    <p>Your email is @ViewBag.Email</p>
+}
+
+<form id="form" method="post">
+    <input name="post" />
+    <input type="submit" value="Add post" />
+</form>
+
+@if(ViewBag.Posts != null)
+{
+    <p>All posts:</p>
+    <p>@Html.Raw(ViewBag.Posts)</p>
+}

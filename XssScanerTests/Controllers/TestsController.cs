@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using XssScanerTests.Helpers;
 
 namespace XssScanerTests.Controllers
 {
     public class TestsController : Controller
     {
-        public async Task<IActionResult> DOMBasedXSS()
+        public IActionResult DOMBasedXSS()
         {
             // #<script>alert('XSS')</script>
 
             return View();
         }
 
-        public async Task<IActionResult> OutsideOfTag(string input)
+        public IActionResult OutsideOfTag(string input)
         {
             // <script>alert('XSS')</script>
 
@@ -19,7 +20,7 @@ namespace XssScanerTests.Controllers
             return View();
         }
 
-        public async Task<IActionResult> InsideTagSingleQuotes(string input)
+        public IActionResult InsideTagSingleQuotes(string input)
         {
             // foo' onerror="alert('XSS')" src name='bar
 
@@ -27,7 +28,7 @@ namespace XssScanerTests.Controllers
             return View();
         }
 
-        public async Task<IActionResult> InsideTagDoubleQuotes(string input)
+        public IActionResult InsideTagDoubleQuotes(string input)
         {
             // foo" onerror="alert('XSS')" src name="bar
 
@@ -35,7 +36,7 @@ namespace XssScanerTests.Controllers
             return View();
         }
 
-        public async Task<IActionResult> InsideTagOutsideQuotes(string input)
+        public IActionResult InsideTagOutsideQuotes(string input)
         {
             // foo onerror="alert('XSS')" src
 
@@ -43,7 +44,7 @@ namespace XssScanerTests.Controllers
             return View();
         }
 
-        public async Task<IActionResult> InsideComment(string input)
+        public IActionResult InsideComment(string input)
         {
             // --><script>alert('XSS')</script>
 
@@ -51,7 +52,7 @@ namespace XssScanerTests.Controllers
             return View();
         }
 
-        public async Task<IActionResult> InsideScriptTagSingleQuotes(string input)
+        public IActionResult InsideScriptTagSingleQuotes(string input)
         {
             // foo'); alert('XSS
 
@@ -59,7 +60,7 @@ namespace XssScanerTests.Controllers
             return View();
         }
 
-        public async Task<IActionResult> InsideScriptTagDoubleQuotes(string input)
+        public IActionResult InsideScriptTagDoubleQuotes(string input)
         {
             // foo"); alert("XSS
 
@@ -67,9 +68,58 @@ namespace XssScanerTests.Controllers
             return View();
         }
 
-        public async Task<IActionResult> InsideScriptTagOutsideQuotes(string input)
+        public IActionResult InsideScriptTagOutsideQuotes(string input)
         {
             // 'foo'); alert('XSS'
+
+            ViewBag.Input = input;
+            return View();
+        }
+
+        public IActionResult DiscussionBoard(string name, string email, string post)
+        {
+            if (!string.IsNullOrEmpty(post))
+                StringHolder.posts += post + "   ";
+
+            ViewBag.Posts = StringHolder.posts;
+            ViewBag.Name = name;
+            ViewBag.Email = email;
+
+            return View();
+        }
+
+        public IActionResult StoredXSS(string input)
+        {
+            //"<script>alert('XSS')</script>
+
+            var fileName = "TextFiles/reviews.txt";
+
+            if (!string.IsNullOrEmpty(input))
+            {
+                using var sw = new StreamWriter(fileName, true);
+                sw.Write(input + "   ");
+                sw.Close();
+            }
+
+            using var sr = new StreamReader(fileName);
+            var reviews = sr.ReadToEnd();
+            ViewBag.Reviews = reviews;
+            sr.Close();
+
+            return View();
+        }
+
+        public IActionResult ReflectedXss(string urlParameter)
+        {
+            //?urlParameter=<script>alert('XSS')</script>
+
+            ViewBag.UrlParameter = urlParameter;
+            return View();
+        }
+
+        public IActionResult CodingWeakness(string input)
+        {
+            //javascript:alert(document.cookie)
 
             ViewBag.Input = input;
             return View();
